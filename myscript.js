@@ -1,27 +1,58 @@
 let play = document.getElementById("play");
+let contenitore = document.querySelector(".tabella");
 
 play.addEventListener(`click`, function(){
-    let contenitore = document.querySelector(".tabella");
     
     let livelli = document.getElementById("livelli");
+    let livello = livelli.value;
     contenitore.innerHTML = " ";
+    
 
-    if (livelli == "facile") {
-        for (let i=0; i<100; i++){
-            contenitore[i].innerHTML += `<div class="box"> `+ i +` </div>` 
-        }
-    } else if (livelli == "medio") {
-        for (let j=0; j<81; j++){
-            contenitore[j].innerHTML += `<div class="box"> `+ j +` </div>` 
-        }
-    } else if (livelli == "difficile") {
-        for (let k=0; k<49; k++){
-            contenitore[k].innerHTML += `<div class="box"> `+ k +` </div>` 
-        }
+    if(livello == "vuoto"){
+        contenitore.innerHTML = " ";
+    } else if (livello == "facile") {
+
+        creaBox( 10 )
+    } else if (livello == "medio") {
+        creaBox( 9 )
+    } else if (livello == "difficile") {
+        creaBox( 7 )
     }  
     
-})
+    let boxes = document.querySelectorAll('.box')
+    
+    for( let cont = 0; cont < boxes.length; cont++ )
+    {
+        boxes[ cont ].addEventListener('click', function(){
+                
+                const contenuto = this.innerHTML
 
-// if(livelli == "vuoto"){
-//     contenitore.innerHTML = " ";
-// } else 
+                console.log( contenuto )
+
+        })
+    }
+
+    //generiamo le bombe
+
+});
+
+function creaBox( numeroRighe )
+{
+    let contatore = 1;
+
+    for (let i=0; i<numeroRighe; i++)
+        {
+            const riga = document.createElement('div')           
+            riga.classList.add('row')
+            
+            contenitore.appendChild( riga )
+
+            for (let l=0; l<numeroRighe; l++ )
+            {
+                riga.innerHTML += `<div class="box col box-${contatore}"> `+ contatore +` </div>`; 
+                contatore++
+            }
+        }
+}
+    
+

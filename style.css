@@ -21,9 +21,13 @@
     width: 80px;
 }
 
-.tabella{
+
+.b_color_container{
     background-color: aquamarine;
     height: 800px;
+}
+.tabella{
+    margin: 0 auto;
 }
 
 .box{
